@@ -11,7 +11,7 @@
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-    "MySql.Data.EntityFrameworkCore": "7.0.7-M61", //Entity Framework 
+    "MySql.Data.EntityFrameworkCore": "7.0.7-M61", //Entity Framework
     "Microsoft.Extensions.Configuration.Json": "1.0.0"
   },
   "tools": {
@@ -21,10 +21,21 @@
   "frameworks": {
     "netcoreapp1.0": {}
   },
-
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
     "debugType": "portable"
+  },
+  // The 'include' statement tells our app what static files to bring with it when we publish
+  "publishOptions": {
+      "include": [
+          "wwwroot",
+          "Views",
+          "web.config"
+      ]
+  },
+  // This script is run after the app is published, and initializes our IIS connection
+  "scripts": {
+      "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
   }
 }

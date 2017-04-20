@@ -17,7 +17,7 @@ namespace BeltExam
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseStartup<Startup>()
+                .UseStartup()
                 .UseIISIntegration()
                 .Build();
 

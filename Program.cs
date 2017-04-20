@@ -18,6 +18,7 @@ namespace BeltExam
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
+                .UseIISIntegration()
                 .Build();
 
             host.Run();

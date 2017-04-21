@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Belt Exam Login and Registration";
+}
+<h1>Login and Registration</h1>
+@{
+    <ul>
+        @foreach(var error in ViewBag.valErrors)
+        {
+            if(error.Errors.Count > 0)
+                {
+                    <li>@error.Errors[0].ErrorMessage</li>
+                }
+        }
+    </ul>
+}
+<form action="register" method="POST">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <label for="UserName">First Name:</label><input id="UserName" type="text" name="UserName" value="">
+        <label for="Email">Email Address:</label><input id="Email" type="text" name="Email" value="">
+        <label for="Password">Password:</label><input id="Password" type="password" name="Password" value="">
+        <label for="PasswordConf">Retype-Password:</label><input id="PasswordConf" type="password" name="PasswordConf" value="">
+        <input type="submit" name="register" value="Register">
+    </fieldset>
+</form>
+<form action="login" method="POST">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <label for="Email">Email Address:</label><input type="text" name="Email" value="">
+        <label for="Password">Password:</label><input type="password" name="Password" value="">
+        <input type="submit" name="login" value="Login">
+    </fieldset>
+</form>

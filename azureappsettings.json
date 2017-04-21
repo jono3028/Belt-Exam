@@ -1,0 +1,7 @@
+{
+    "DBInfo":
+    {
+        "Name": "MySQLconnect",
+        "ConnectionString": "server=localhost;userid=azure;password=password;port=50706;database=BeltExam;SslMode=None"
+    }
+}

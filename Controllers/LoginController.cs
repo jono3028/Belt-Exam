@@ -33,6 +33,7 @@ namespace BeltExam.Controllers
             {
                 User ValidUser = new User()  {
                     UserName = NewUser.UserName,
+                    UserAlias = NewUser.UserAlias,
                     Email = NewUser.Email,
                     Password = NewUser.Password
                 };

@@ -1,5 +1,47 @@
 @{
-    ViewData["Title"] = "Belt Exam Home";
+    ViewData["Title"] = "Belt Exam Home: Bright Ideas";
 }
-<h1> You have logged in </h1>
+<h1>Hi @ViewBag.CurrentUser.UserAlias</h1>
 <a href="logout">Log Out</a>
+<form action="/newidea" method="POST">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <label for="UserIdea">Your Idea:</label>
+        <textarea id="UserIdea" type="text" name="UserIdea"></textarea>
+        <input type="submit" name="submit" value="Post!">
+    </fieldset>
+</form>
+@{
+    foreach (var idea in ViewBag.AllIdeas)
+    {
+        <h3><a href="/users/@idea.UserId">@idea.Owner.UserAlias</a> says:</h3>
+        
+            @if(idea.UserId == ViewBag.CurrentUser.UserId)
+            {
+                <a href="/deleteidea/@idea.IdeaId">Delete</a>
+            }
+        
+        <p>@idea.UserIdea</p>
+        <p>
+        @{
+            bool print = true;
+            foreach (var like in idea.LikedBy)
+            {
+                if (like.UserId == ViewBag.CurrentUser.UserId)
+                    {
+                        print = false; 
+                    }
+            }
+            if(print)
+            {
+                <a href="/like/@idea.IdeaId">Like</a>
+            }
+            else
+            {
+                <span>Already Liked!</span>
+            }
+        }
+          <a href="/bright_ideas/@idea.IdeaId">@idea.LikedBy.Count People</a> Like this.</p>
+    }
+}
+
